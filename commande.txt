@@ -1,3 +1,4 @@
+// git command 
 git add
 git commit -m "commentaire"
 git push -u origin master
@@ -12,3 +13,7 @@ puis parès commande du haut et supprimer section = oxs .. avec commande git --c
 git status
 
 git clone thttp(adresse du fichier ou dossier)
+
+//compiler plusieur fichier en C++
+
+g++ -Wall -o app.exe  Arme.cpp main.cpp Personnage.cpp
