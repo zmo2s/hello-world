@@ -1,9 +1,8 @@
-
 #include "Arme.h"
 
 using namespace std;
 
-Arme::Arme() : m_nom("Epée rouillée"), m_degats(10)
+Arme::Arme() : m_nom("EpÃ©e rouillÃ©e"), m_degats(10)
 {
 
 }
@@ -21,7 +20,7 @@ void Arme::changer(string nom, int degats)
 
 void Arme::afficher()
 {
-    cout << "Arme : " << m_nom << " (Dégâts : " << m_degats << ")" << endl;
+    cout << "Arme : " << m_nom << " (DÃ©gÃ¢ts : " << m_degats << ")" << endl;
 }
 
 int Arme::getDegats() const

@@ -7,15 +7,16 @@ using namespace std;
 
 int main()
 {
-    // Création des personnages
-    Personnage david, goliath("Epée aiguisée", 20);
-
+    // Crï¿½ation des personnages
+    //Personnage david, goliath("Epï¿½e aiguisï¿½e", 20);
+    Personnage david,goliath;
+  david=goliath;
     // Au combat !
     goliath.attaquer(david);
     david.boirePotionDeVie(20);
     goliath.attaquer(david);
     david.attaquer(goliath);
-    goliath.changerArme("Double hache tranchante vénéneuse de la mort", 40);
+    goliath.changerArme("Double hache tranchante vï¿½nï¿½neuse de la mort", 40);
     goliath.attaquer(david);
 
     // Temps mort ! Voyons voir la vie de chacun...
