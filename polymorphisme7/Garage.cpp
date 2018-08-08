@@ -19,7 +19,7 @@ void Garage::info()
 {
     cout << "Le garage contient :" << endl;
 
-    for(int i(0);i<m_listeVehicules.size();++i)
+    for(std::size_t i = 0;i<m_listeVehicules.size();++i)
     {
         m_listeVehicules[i]->affiche();
       cout<<i<<"oooo";

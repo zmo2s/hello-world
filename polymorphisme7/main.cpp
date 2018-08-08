@@ -28,18 +28,20 @@ int main()
 
 
     Moto a(2,3,3);
-    //Garage b(2,3);
-    //Garage c;
-  //  b.ajouter(new Moto(2,3,3));
-//    c.ajouter(new Voiture(2,3,3));
+    Garage b(2,3);
+  //  Garage c;
+    b.ajouter(new Moto(2,3,3));
+    b.info();
+  //.ajouter(new Voiture(2,3,3));
 
 //c.info();
 //    listeVehicules.push_back(new Camion(200,1));
 
   // listeVehicules[3]->affiche();
       //On affiche les informations de la première voiture
-
-     //listeVehicules[2]->affiche();
+      //   listeVehicules[0]->affiche();
+      //  listeVehicules[1]->affiche();
+    // listeVehicules[2]->affiche();
 
       //listeVehicules[2]->afficheDate();
       //Et celles de la moto
