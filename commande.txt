@@ -17,3 +17,18 @@ git clone thttp(adresse du fichier ou dossier)
 //compiler plusieur fichier en C++
 
 g++ -Wall -o app.exe  Arme.cpp main.cpp Personnage.cpp
+
+improté code c++ en java 
+http://roger.astier.free.fr/app/app_java/javaJni.html
+
+
+================QT Creator===============
+
+créer un éxécutable 
+
+
+$ qmake test.pro
+
+$ make
+
+$ ./Test
