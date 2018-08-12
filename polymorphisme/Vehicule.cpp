@@ -1,7 +1,7 @@
 #include "Vehicule.h"
 
 using namespace std;
-Vehicule::Vehicule(): m_prix(10);
+Vehicule::Vehicule(): m_prix(10)
 {
 
 }

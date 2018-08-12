@@ -8,7 +8,7 @@
 
 
 
-class voiture : public  Vehicule
+class Voiture : public  Vehicule
   {
   public:
     Voiture();
@@ -16,6 +16,6 @@ class voiture : public  Vehicule
 
   private:
 
-    int m_portes
+    int m_portes;
   };
 #endif

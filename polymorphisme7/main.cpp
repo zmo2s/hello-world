@@ -28,6 +28,7 @@ int main()
 
 
     Moto a(2,3,3);
+  
     Garage b(2,3);
   //  Garage c;
     b.ajouter(new Moto(2,3,3));
