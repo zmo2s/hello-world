@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Test1.0.0
-DISTDIR = /home/a/Hello-World/Qtpart3/.tmp/Test1.0.0
+DISTDIR = /home/a/Hello-World/Qtpart7/.tmp/Test1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
 LIBS          = $(SUBLIBS) -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -51,9 +51,10 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = main.cpp \
-		MaFenetre.cpp 
+		MaFenetre.cpp moc_MaFenetre.cpp
 OBJECTS       = main.o \
-		MaFenetre.o
+		MaFenetre.o \
+		moc_MaFenetre.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -343,8 +344,14 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: moc_MaFenetre.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) moc_MaFenetre.cpp
+moc_MaFenetre.cpp: MaFenetre.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/a/Hello-World/Qtpart7 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MaFenetre.h -o moc_MaFenetre.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
 compiler_uic_make_all:
@@ -355,7 +362,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
@@ -364,6 +371,9 @@ main.o: main.cpp MaFenetre.h
 
 MaFenetre.o: MaFenetre.cpp MaFenetre.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MaFenetre.o MaFenetre.cpp
+
+moc_MaFenetre.o: moc_MaFenetre.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MaFenetre.o moc_MaFenetre.cpp
 
 ####### Install
 

@@ -1,0 +1,37 @@
+Les fichiers sont compiler dnas le fichier build-Test-Desktop-Profile donc toute les image doivent s'y etre et les fichiers aussi si on veut les utiliser
+sinon il faut décocher l'option shadow build dnas l'option project une fois un projet ouvert.
+L'option shadow build décochet définit le dossier test comme dossier locale.
+Mais shadow build case occhet permet de lire les différrente version de QT pour le meme programme.
+
+Le meilleur moyen placer une image click droit dossier source add files on met l'image , puis ont met :  /home/a/Test/smile.png  un repertoire complet comme chemin d'accées.
+
+bref si j'y arrive pas cocher shadow build.
+
+shadow build compile uniquement dans desktop-profile-test pour sa qui il faut aller chercher les images et les ajouter dans le projet c'est mieux .
+
+Conclusion: Faire une copie des fichier ressources (image etc .... présente dnas le dossier test  dans le dossier ( build_desktop-profile ) 
+Et donc  si quelqu'un prend ce code sur son ordi il devra  run qmake puiscompiler le code  puis  copier les reosuscres image(etc..) présente dnas le dossier test  dnas build-desktop-profile.
+De cette façon la on a pas besoin de mettre des chemin pour fichier / dossier a rallonge.
+
+
+==================================================
+
+
+web
+
+
+You need to install the webkitwidgets library.
+
+On Ubuntu, try this in a terminal:
+
+sudo apt-get install libqt5webkit5-dev
+pour utilsier webkit
+
+
+
+première installation si il toruve pas d'executable choisir la bonne version de Qt dans les aparamètre
+
+/////////////:
+qt deseigner 
+
+do you want to reload it ? yes YES for tkae modify

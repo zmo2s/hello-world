@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Test1.0.0
-DISTDIR = /home/a/Hello-World/Qtpart3/.tmp/Test1.0.0
+DISTDIR = /home/a/Hello-World/Qtpart10/.tmp/Test1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
 LIBS          = $(SUBLIBS) -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -359,10 +359,10 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-main.o: main.cpp MaFenetre.h
+main.o: main.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
-MaFenetre.o: MaFenetre.cpp MaFenetre.h
+MaFenetre.o: MaFenetre.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MaFenetre.o MaFenetre.cpp
 
 ####### Install

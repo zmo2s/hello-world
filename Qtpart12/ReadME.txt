@@ -1,0 +1,1 @@
+copier dnas le fichier icone2.jpg dans build-desktop-Test pour que la PATH (direction) de la photo soit bonne ! 
