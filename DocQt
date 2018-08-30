@@ -1,0 +1,269 @@
+Guide d'utilisation qt : 
+
+MYSQL qt linux wampp
+https://www.youtube.com/watch?v=rjp2msIfalE&t=156s
+
+https://openclassrooms.com/forum/sujet/c-qt-mysql-connector-c-connexion-a-mysql
+https://openclassrooms.com/forum/sujet/qt-ce-connecter-a-une-base-de-donnees-92531
+
+
+
+command line : 
+a@a:~/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers$ qmake "INCLUDEPATH+=/usr/include/mysql" "LIBS+=-L/usr/lib/mysql -lmysqlclient_r" sqldrivers.pro
+/home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/sqldrivers.pro:8: Unknown test function: qtConfig
+/home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/sqldrivers.pro:9: Unknown test function: qtConfig
+/home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/sqldrivers.pro:10: Unknown test function: qtConfig
+/home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/sqldrivers.pro:11: Unknown test function: qtConfig
+/home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/sqldrivers.pro:12: Unknown test function: qtConfig
+/home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/sqldrivers.pro:13: Unknown test function: qtConfig
+/home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/sqldrivers.pro:14: Unknown test function: qtConfig
+/home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/sqldrivers.pro:15: Unknown test function: qtConfig
+/home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/sqldrivers.pro:16: Unknown test function: qtConfig
+
+
+
+Commande la plus utilisé ldd sauf que si on a libQt5Sql.0.5 => not found on doit toruvé sur internet pourquoi c'est comme un compilateur pour chaque lib not found il faut que toute les lib soit found 
+
+
+a@a:~/Qt/5.11.0/gcc_64/plugins/sqldrivers$ ldd libqsqlmysql.so
+	linux-vdso.so.1 (0x00007ffdaf2bd000)
+	libQt5Sql.so.5 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libQt5Sql.so.5 (0x00007f0f0b29c000)
+	libQt5Core.so.5 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libQt5Core.so.5 (0x00007f0f0ab42000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f0f0a923000)
+	libmysqlclient.so.18 => not found
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f0f0a595000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f0f0a1f7000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f0f09fdf000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f0f09bee000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f0f099d1000)
+	libicui18n.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicui18n.so.56 (0x00007f0f09538000)
+	libicuuc.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicuuc.so.56 (0x00007f0f09180000)
+	libicudata.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicudata.so.56 (0x00007f0f0779d000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f0f07599000)
+	libgthread-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgthread-2.0.so.0 (0x00007f0f07397000)
+	libglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007f0f07081000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f0f0b6f7000)
+	libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f0f06e0f000)
+
+
+
+changer des droits fichier : sudo chmod a+x config.default.php
+
+                             sudo chmod 777 config.default.php
+
+
+commande présente sur les forum si lisqlclient no found :  sudo cd ~root  
+                                                           wget http://files.directadmin.com/services/debian_7.0_64/libmysqlclient.so.18
+                                                           cp libmysqlclient.so.18 /usr/lib/x86_64-linux-gnu/
+                                                           cd /usr/lib/x86_64-linux-gnu
+                                                           chmod 755 libmysqlclient.so.18
+                                                           sudo ldconfig
+
+a@a:/usr/lib/x86_64-linux-gnu$ ldd libmysqlclient.so.18	linux-vdso.so.1 (0x00007ffd6a3f1000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007ff49c8f1000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007ff49c6ed000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007ff49c4e5000)
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007ff49c157000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007ff49bdb9000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007ff49bba1000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007ff49b7b0000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007ff49d0da000)
+
+petite vérifiacation
+
+
+toujour utiliser la commande ldd  libqsqlpsql.so pour véfirié que tous osit bien compiler dnas ce cas suivant, libpq.so.5 => not found grace a la commande ldd libqsqlpsql.so dnas le répertoire sqldrivers
+
+   a@a:~/Qt/5.11.0/gcc_64/plugins/sqldrivers$ ldd libqsqlpsql.so
+	linux-vdso.so.1 (0x00007ffda83ca000)
+	libQt5Sql.so.5 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libQt5Sql.so.5 (0x00007fe2b8cdf000)
+	libQt5Core.so.5 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libQt5Core.so.5 (0x00007fe2b8585000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fe2b8366000)
+	libpq.so.5 => not found
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fe2b7fd8000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fe2b7c3a000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fe2b7a22000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fe2b7631000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007fe2b7414000)
+	libicui18n.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicui18n.so.56 (0x00007fe2b6f7b000)
+	libicuuc.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicuuc.so.56 (0x00007fe2b6bc3000)
+	libicudata.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicudata.so.56 (0x00007fe2b51e0000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fe2b4fdc000)
+	libgthread-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgthread-2.0.so.0 (0x00007fe2b4dda000)
+	libglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007fe2b4ac4000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fe2b913c000)
+	libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007fe2b4852000)
+
+
+la solution pour libpq.so.5 is not found : 
+
+a@a:~/Qt/5.11.0/gcc_64/plugins/sqldrivers$ sudo apt-get install libpq5
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following NEW packages will be installed:
+  libpq5
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 107 kB of archives.
+After this operation, 381 kB of additional disk space will be used.
+Get:1 http://fr.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpq5 amd64 10.5-0ubuntu0.18.04 [107 kB]
+Fetched 107 kB in 0s (236 kB/s)  
+Selecting previously unselected package libpq5:amd64.
+(Reading database ... 218004 files and directories currently installed.)
+Preparing to unpack .../libpq5_10.5-0ubuntu0.18.04_amd64.deb ...
+Unpacking libpq5:amd64 (10.5-0ubuntu0.18.04) ...
+Setting up libpq5:amd64 (10.5-0ubuntu0.18.04) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+
+
+Permet de vérifié encore que ici clientmysql la lib est maintenant pas toruvé 
+a@a:~/Qt/5.11.0/gcc_64/plugins/sqldrivers$ ldd libqsqlmysql.so
+	linux-vdso.so.1 (0x00007ffdaf2bd000)
+	libQt5Sql.so.5 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libQt5Sql.so.5 (0x00007f0f0b29c000)
+	libQt5Core.so.5 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libQt5Core.so.5 (0x00007f0f0ab42000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f0f0a923000)
+	libmysqlclient.so.18 => not found
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f0f0a595000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f0f0a1f7000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f0f09fdf000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f0f09bee000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f0f099d1000)
+	libicui18n.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicui18n.so.56 (0x00007f0f09538000)
+	libicuuc.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicuuc.so.56 (0x00007f0f09180000)
+	libicudata.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicudata.so.56 (0x00007f0f0779d000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f0f07599000)
+	libgthread-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgthread-2.0.so.0 (0x00007f0f07397000)
+	libglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007f0f07081000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f0f0b6f7000)
+	libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f0f06e0f000)
+
+
+
+
+ solution : 
+commande présente sur les forum si lisqlclient no found :  sudo cd ~root  
+                                                           wget http://files.directadmin.com/services/debian_7.0_64/libmysqlclient.so.18
+                                                           cp libmysqlclient.so.18 /usr/lib/x86_64-linux-gnu/
+                                                           cd /usr/lib/x86_64-linux-gnu
+                                                           chmod 755 libmysqlclient.so.18
+                                                           sudo ldconfig
+
+
+
+
+  a@a:/usr/lib/x86_64-linux-gnu$ ldd libmysqlclient.so.18	linux-vdso.so.1 (0x00007ffd6a3f1000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007ff49c8f1000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007ff49c6ed000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007ff49c4e5000)
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007ff49c157000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007ff49bdb9000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007ff49bba1000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007ff49b7b0000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007ff49d0da000)
+
+petite vérifiacation
+
+
+et so on réecrit la commande ldd mibmysqlclient.so dans le bon répertoire on trouve libmysqlclient.so
+
+
+
+a@a:~/Qt/5.11.0/gcc_64/plugins/sqldrivers$ ldd libqsqlmysql.so
+	linux-vdso.so.1 (0x00007fff521c7000)
+	libQt5Sql.so.5 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libQt5Sql.so.5 (0x00007f2476f99000)
+	libQt5Core.so.5 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libQt5Core.so.5 (0x00007f247683f000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f2476620000)
+	libmysqlclient.so.18 => /usr/lib/x86_64-linux-gnu/libmysqlclient.so.18 (0x00007f2476056000)
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f2475cc8000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f247592a000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f2475712000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f2475321000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f2475104000)
+	libicui18n.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicui18n.so.56 (0x00007f2474c6b000)
+	libicuuc.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicuuc.so.56 (0x00007f24748b3000)
+	libicudata.so.56 => /home/a/Qt/5.11.0/gcc_64/plugins/sqldrivers/./../../lib/libicudata.so.56 (0x00007f2472ed0000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f2472ccc000)
+	libgthread-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgthread-2.0.so.0 (0x00007f2472aca000)
+	libglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007f24727b4000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f24773f4000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f24725ac000)
+	libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f247233a000)
+
+encore la ocmmande de vérifiaction cette fois - ci tous marche.
+
+
+config pour wamp :  chmod 777 config.default.php
+ modifier le fichier
+
+
+
+répertorie /opt/lampp/phpmyadmin/libraries/ config.default.php
+
+répertoire utile : /home/a/Qt/5.11.0/Src/qtbase/src/plugins/sqldrivers/
+  ou on toruve libqmysql.so auqeulle on peut compilé a volonté pour repéré les lib non chargé .
+
+utile si libqspq5 no found 
+
+https://forum.qt.io/topic/59963/newbie-postgresql-question/4 
+
+
+
+accéder axampp
+http://localhost/phpmyadmin/
+
+
+
+qt code mysql écrire toujour : 127.0.0.1 au lieu de localhost dnas la connection 
+pour redémarré xampp sudo service mysql stop
+
+pour lancer xampp
+sudo /opt/lampp/lampp start
+info : 
+https://doc.ubuntu-fr.org/xampp
+
+pour les lib :  Download Connector/C (libmysqlclient) de mysql
+https://dev.mysql.com/downloads/connector/c/
+Download Connector/C++  de mysql 
+https://dev.mysql.com/downloads/connector/cpp/8.0.html
+
+inclure otute les lib présent dnas les 2 fichier : 
+ici 
+licrypto.so et lissl.so elle sont reconnu par Qt .celle non reconnu par Qt exemple : myclientsql pas reconnu donc on s'enfou et de taille très petite d'ailleur
+ainsi que de libmysqlcppconn.so ainsi que les autres principales.(PAS TOTUE  que celle que qt reconnait faire du bon sens
+
+
+
+Récupitulatife : 
+
+install Qt 5.10 ou n'importe lequelle avec les framework
+les tools aussi qui sont normalement compris dnasl e framework
+tlecharger ocnnector c de mysql et connector c++ mysql 
+et telecharger xamp 
+et telecharger le lcient mysql sudo apt-get install mysql-server mysql-client
+enfaite c'est jsute la commande pour installer mysql , et pouvoir créer des table et faire tableau , mettre des variable dnas les tableau ; jsute se ocnnecter en écrivant mysql dans la console pour voir si sa marche bien 
+sortir les lib des dossier ocnnector c et connector c++ .
+pour les inclure après dnas Qt .
+lancer le servuer de phpadmin avec xamp créer la database etc ....
+puis lancer qt xD si bug oup roblème faire ldd libsqsqlmysql.so présente plus haut dnas sqldrivers sa résoud les problèmes on peut aussi tenter de compiler avec la commande qmake "INCLUDEPATH+=/usr/include/mysql" "LIBS+=-L/usr/lib/mysql -lmysqlclient_r" sqldrivers.pro
+mais sa a l'aire de servir a rien en plus renvoie un code bizarre ovir plus haut.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                           
+                                                           
+
+                                                          
+                                                           
+     
