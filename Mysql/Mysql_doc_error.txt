@@ -1,0 +1,17 @@
+Mysql
+
+If error in Mysql :
+
+exemple : ERROR 1045 (28000): Access denied for user 'a'@'localhost' (using password: YES)
+
+for the command : mysql -h localhost -u root -pmotdepassetopsecret
+
+do the following :
+
+
+Create account in Mysql
+
+- sudo mysql
+- CREATE USER test@localhost IDENTIFIED BY 'password';
+- mysql -u test -p
+
