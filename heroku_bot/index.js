@@ -14,7 +14,7 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 
 //fichier ou enrigistre les lvl 
-const prefix="/";
+const prefix="$";
 
 
 //recupe le token 
