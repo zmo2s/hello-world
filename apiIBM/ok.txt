@@ -1,5 +1,5 @@
 
-mdp IBM clementine1011@
+
 curl -u 3837d9be-a618-4264-a783-a9148d151f41:6b4CPN1LnMmj -X POST \
 --header "Content-Type: audio/flac" \
 --header "Transfer-Encoding: chunked" \
