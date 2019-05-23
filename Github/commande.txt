@@ -1,7 +1,7 @@
 // git command 
-git add
+git add .
 git commit -m "commentaire"
-git push -u origin master
+git push -u origin master             ou on peut faire git push --all
 
 
 nom : zmo2s
@@ -10,6 +10,7 @@ mot de passe : ***********
 
 créer un dossier puis écrire la commande git init voir https://lifehacker.com/5983680/how-the-heck-do-i-use-github
 puis parès commande du haut et supprimer section = oxs .. avec commande git --configure-edit
+git init pour un dossier
 git status
 
 git clone thttp(adresse du fichier ou dossier)
