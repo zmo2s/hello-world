@@ -200,6 +200,92 @@ t_elem* intervalleMaillon(t_elem *prem)
   
 }
 
+t_elem* dupliqueMaillon(t_elem *prem)
+{
+t_elem *b=init1();
+t_elem *e;
+t_elem *prec;
+
+ //int n;
+// scanf("%d", &n); 
+
+
+  if(prem == NULL)
+    printf("liste vide");
+  if(b->val== prem->val)
+   {
+     b->suiv=prem;
+     prem=b;
+  
+   }
+e=prem;
+int c = taille(prem)-2;
+e=e->suiv;int i=0;
+ while( i<c )//longueur liste n-1
+      {
+i++;
+//b=init1();
+     prec=e;
+     e=e->suiv;
+    if(b->val==e->val)
+   {
+     b->suiv=e;
+    prec->suiv=b;
+   
+        printf("la val de e  %d la val de b %d",e->val,b->val);
+   }
+  
+}
+   return prem;
+
+}
+
+void saveListe(t_elem*prem)
+{
+  FILE*f;
+  if(prem!=NULL)
+   {
+     if((f=fopen("save liste.bin","wb"))!=NULL)
+     {
+       while(prem!=NULL)
+         {
+           fwrite(prem,sizeof(t_elem),1,f);
+           prem=prem->suiv;
+         }
+
+         fclose(f);
+     }
+     else
+      printf("erreur création fichier \n");
+   }
+   else
+    printf("pas de sauvegarde pour une lsite vide \n");
+}
+
+t_elem* chargeListe()
+{
+  FILE*f;
+  t_elem*prem=NULL,*p,e;
+  if((f=fopen("save liste.bin" ,"rb"))!=NULL)
+  {
+    prem=malloc(sizeof(t_elem));
+    fread(prem,sizeof(t_elem),1,f);
+   p=prem;
+   while(fread(&e,sizeof(t_elem),1,f))
+   {
+   p->suiv=malloc(sizeof(t_elem));
+   p=p->suiv;
+   *p=e;
+   p->suiv=NULL;
+ }
+ fclose(f);
+}
+else
+   printf("erreur ou fichier inexcistent ");
+  return prem;
+
+}
+
 void selection()
 {
    t_elem* premier = NULL;
@@ -208,7 +294,7 @@ void selection()
   while(a!=0)
    {
 
-printf("Veuillez choisir parmis les options proposé \n  1-remplir la liste \n  2-afficher la lsite  \n  3-detruire la liste \n  4-somme de la liste \n  5-milieuListe \n  6-maillonInferieur \n  7-creerListe \n  saisir la valeur de a :");
+printf("\n Veuillez choisir parmis les options proposé \n \n  1-remplir la liste \n  2-afficher la lsite  \n  3-detruire la liste \n  4-somme de la liste \n  5-milieuListe \n  6-maillonInferieur \n  7-creerListe \n  8-intervalleMaillon \n  9-dupliquerMaillon \n  10-saveListe   \n  11-chargeListe \n \n saisir la valeur de a : ");
      scanf("%d", &a); 
 
 
@@ -244,6 +330,15 @@ printf("Veuillez choisir parmis les options proposé \n  1-remplir la liste \n  
      if(a==8)
      {premier=intervalleMaillon(premier);} // !!!!!!!  idem ici la valeur de premier n'est pas changer sa reste 
 //une copie donc la lsite reste de la meme taille pour pouvoir changer la taille de la liste il faut mettre premier = fonction cela réecrit complétement la lsite de plus lafonctino est réutilsié par la fonctino parcourir
+
+     if(a==9)
+     {premier=dupliqueMaillon(premier);}
+      
+       if(a==10)
+     {saveListe(premier);}
+       
+      if(a==11)
+     {premier=chargeListe(premier);}
   }
     
 }
