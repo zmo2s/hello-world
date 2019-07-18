@@ -44,6 +44,7 @@ t_elem* ajout_debut1(t_elem*prem,t_elem*e)
    putchar('\n');
  }
 
+
  int taille(t_elem* prem)
  {
    int cpt=0;
@@ -74,13 +75,13 @@ int n;
 }
 
 
-t_elem* josepheFlavius(t_elem *prem)
+t_elem* josepheFlavius(t_elem **prem)
 {
  int cpt=1;
- t_elem* n=prem;
- t_elem *prec=prem;
+ t_elem* n=*prem;
+ t_elem *prec=NULL;
  t_elem *supp=NULL;
-int j=taille(prem);
+int j=taille(*prem);
  
   /*  while( taille(prem) != 1)
      {
@@ -111,14 +112,19 @@ int j=taille(prem);
        }
 
                
-    /*      else {
+         else {
                   while( n!=NULL)
                        {
                     if(prec==NULL)
-                 {
-                     supp=*prem;
-                     *prem=*prem->suiv;
-                     free(supp);
+                {
+                 // supp=*prem;
+                   //*prem=NULL;
+                   *prem=n->suiv;
+                  //  free(supp);
+                   prec=*prem;
+                n=n->suiv;
+cpt++;
+    
                  }
         
    if(cpt %2 !=0)
@@ -140,9 +146,9 @@ int j=taille(prem);
     
               }
      
-  */
+  
 
- return prem;
+ return *prem;
 }
 
 int main()
@@ -153,7 +159,7 @@ int main()
   prem1=creerListe(prem1,prem2);
   parcourir(prem1);
 
-  prem1= josepheFlavius(prem1);
+  prem1= josepheFlavius(&prem1);
 
    parcourir(prem1);
 

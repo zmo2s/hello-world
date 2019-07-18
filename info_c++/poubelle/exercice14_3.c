@@ -37,12 +37,13 @@ t_elem* ajout_debut1(t_elem*prem,t_elem*e)
    printf("liste vide");
    while(prem!=NULL)
    {
-     printf("[%d%s] --",prem->val,prem->s);
+     printf("[%d] --",prem->val);
      prem=prem->suiv;
    }
    printf("NULL");
    putchar('\n');
  }
+
 
  int taille(t_elem* prem)
  {
@@ -74,25 +75,58 @@ int n;
 }
 
 
-t_elem* josepheFlavius(t_elem *prem)
+t_elem* supprimeMaillon(t_elem* prem)
 {
- int cpt=1;
- t_elem* n=prem;
- t_elem *prec=prem;
+  t_elem* prec;
+  if(prem!=NULL)
+   {
+     prec=prem;
+     prem=prem->suiv;
+
+     free(prec);
+
+   }
+   return prem;
+}
+
+t_elem* josepheFlavius(t_elem **prem)
+{
+ int cpt=0;
+ t_elem* n=*prem;
+ t_elem *prec=NULL;
  t_elem *supp=NULL;
-int j=taille(prem);
- 
-  /*  while( taille(prem) != 1)
+int j=taille(*prem);
+t_elem *e=NULL;
+int c=1;
+ int v=(j/2)+1;int o;
+    while( o != 1)
      {
-   */
+  // printf("j %d",j);
          if( j % 2 == 0)
          {
 
             while(n != NULL)
             {
 
+
+  if(cpt %2==0 && o==2)
+{
+
+ n=n->suiv;
+supp=n;
+ prec->suiv=n->suiv;
+ free(supp);
+prec=n;
+n=n->suiv;
+ 
+ break;
+}
+
+
    if(cpt %2 ==0)
+//ajoute cas prec == NULL sans la ligne prec ->suiv = n->suiv;
                 {
+      
                    prec->suiv=n->suiv;
                    supp=n;
                    free(supp);
@@ -106,27 +140,29 @@ int j=taille(prem);
                  printf("ok");
            
                       cpt++;
+ printf("alors");
         }
-           
+              printf("la valeur cpt %d ", cpt);
        }
 
                
-    /*      else {
-                  while( n!=NULL)
+         else {
+                 while( n!=NULL)
                        {
                     if(prec==NULL)
-                 {
-                     supp=*prem;
-                     *prem=*prem->suiv;
-                     free(supp);
-                 }
-        
-   if(cpt %2 !=0)
                 {
-                   prec->suiv=n->suiv;
+  *prem=supprimeMaillon(*prem);
+cpt++;
+printf("la valeur cpt %d ", cpt);
+                 }
+            c++;
+   if(cpt %2 !=0 && cpt!=0)
+                {
                    supp=n;
+                   prec->suiv=n->suiv;
+                  printf("kakakakakakaakak");
                    free(supp);
-             
+         
                 }
 
 
@@ -135,14 +171,23 @@ int j=taille(prem);
             
                  printf("ok");
            
-                      cpt++;
+                 //     cpt++;
+                    cpt++;
         }
-    
-              }
-     
-  */
 
- return prem;
+    }
+              
+   prec=*prem;
+   n=*prem;
+  supp=NULL;
+
+    o=taille(*prem);
+    parcourir(*prem);
+  cpt=0;
+  
+  }
+
+ return *prem;
 }
 
 int main()
@@ -153,7 +198,7 @@ int main()
   prem1=creerListe(prem1,prem2);
   parcourir(prem1);
 
-  prem1= josepheFlavius(prem1);
+  prem1= josepheFlavius(&prem1);
 
    parcourir(prem1);
 

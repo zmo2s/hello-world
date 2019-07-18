@@ -1,5 +1,3 @@
-//principe on créer un maillon en plus dnas la lsite qui remeterra la liste au début pour chaque nouvelle itération puis on supprime ce maillon
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,10 +14,22 @@ typedef struct elem
 
 t_elem* init1()
 {
-   char *n[]={"p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","pj","pq","pr", "t1","t2","t3","t4","t5","t6","t7","t8","t9","t10","tj","tq","tr","c1","c2","c3","c4","c5","c6","c7","c8","c9","c10","cj","cq","cr","ca1","ca2","ca3","ca4","ca5","ca6","ca7","ca8","ca9","ca10","caj","caq","car"};
+   char *n[]={"->","1"};
 
   t_elem*e=malloc(sizeof(t_elem));
-  strcpy(e->s,n[rand()%52]);
+  strcpy(e->s,n[0]);
+
+  e->suiv=NULL;
+  return e;
+}
+
+
+t_elem* init2()
+{
+   char *n[]={"0","<-"};
+
+  t_elem*e=malloc(sizeof(t_elem));
+  strcpy(e->s,n[1]);
 
   e->suiv=NULL;
   return e;
@@ -38,7 +48,7 @@ t_elem* ajout_debut1(t_elem*prem,t_elem*e)
    printf("liste vide");
    while(prem!=NULL)
    {
-     printf("[%d%s] --",prem->val,prem->s);
+     printf("[%s] --",prem->s);
      prem=prem->suiv;
    }
    printf("NULL");
@@ -163,18 +173,158 @@ free(supp);
 
    return prem;
 }
+t_elem* cell(t_elem *prem)
+{
+  t_elem* e=prem;
+  int cpt =1;
+  char *h[]={"->","<-"} ;
+  while(e!= NULL)
+   {
+
+  //printf("ahhh");
+  if( cpt <=4)
+      strcpy(e->s,h[0]);
+  if( cpt > 4 && cpt <=9)
+       strcpy(e->s,h[1]);
+if(cpt ==9)
+cpt=1;
+
+cpt++;
+e=e->suiv;
+
+  }
+return prem;
+}
+
+
+t_elem* ajoutFin(t_elem *prem)
+{
+  t_elem *e=prem;
+ t_elem *prec;
+t_elem *nouveau=init2();
+while(e->suiv!=NULL)
+ {
+    prec=e;
+    e=e->suiv; 
+ 
+ }
+e->suiv=nouveau;
+prec->suiv=e;
+
+return prem;
+}
+
+
+void compte(t_elem **prem)
+{
+
+ t_elem *e=*prem;
+ t_elem *next=*prem;
+ t_elem *v;
+ t_elem *b;
+t_elem *prec=*prem;
+ char *h[]={"->","<-"} ;
+ next=next->suiv;
+ while(next->suiv!= NULL)
+  {
+    if(strcmp(e->s,next->s) == 0)
+       {
+          printf("error");
+       }
+   else {
+ printf("aaaaaaahhhhhhh");
+     if(strcmp(e->s,h[0])==0)
+       {
+              b=init1();
+             b->suiv=e;
+         prec->suiv=b;
+  printf("aaaaaaahhhhhhh");
+       }
+
+    else {         v=init2();
+v->suiv=next;
+         prec->suiv=v;}
+
+         }
+
+
+
+
+prec=e;
+ e=e->suiv;
+ next=next->suiv;
+}
+       }
+
+
+
+
+
+t_elem* creation(t_elem **prem,int n)
+{
+ int elem=4;
+  t_elem* prem2;
+  t_elem *e=*prem;
+
+int j =4;
+int a=0;
+
+int k=5;
+
+     for(int i=0;i<elem;i++)
+          {
+            prem2=init2();
+            *prem=ajout_debut1(*prem,prem2);
+          }
+
+      for(int h=0;h<k;h++)
+ {
+             prem2=init2();
+          *prem=ajout_debut1(*prem,prem2);
+
+        }
+
+
+  while(a<=n)
+      {
+
+  parcourir(*prem);
+   if(a % 9 ==0 && n>8)
+   {
+
+
+*prem=cell(*prem);
+
+   }
+if( a >9)
+{
+
+
+compte(&(*prem));
+*prem=ajoutFin(*prem);
+}
+
+a++;
+
+   }
+
+
+ // parcourir(*prem);
+ return *prem;
+}
+
+
 int main()
 {
   t_elem *prem1=NULL;
-  t_elem *prem2=NULL;
+  int n;
+ scanf("%d", &n);
 
-
-  prem1=creerListe(prem1,prem2);
+  prem1=creation(&prem1,n);
     parcourir(prem1);
 
 
- prem1=distribution(prem1);
-   parcourir(prem1);
+
 
 
 
