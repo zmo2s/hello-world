@@ -33,3 +33,21 @@ $ qmake test.pro
 $ make
 
 $ ./Test
+
+
+
+================Modifier fichier admin===============
+
+
+sudo gedit
+posser glisser du fchier dnas gedit
+aussi simple que sa .
+
+
+===============Splint===============
+
+$ sudo apt-get install splint
+
+
+$ splint *.c
+pour analysé tous les fichier du repertoire
