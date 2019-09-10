@@ -1,0 +1,15 @@
+la fonction getchar
+char uto=getchar();
+prend une chaine en entré l'équivalent de scanf(%s,uto), et donne en sorti la première lettre donc le premier charactère
+à chaque utilisation la fonction supprime une lettre et affiche la suivante
+on pourrai l'interptrété comme ça
+char getchar(a[256]) { int position; return a[position];}
+le tableau serai tstocker ailleur en variable global
+
+donc si on entre la chaine "salut"
+pour char uto = getchar; (mettre condition d'arret tipyquement uto != '\n')
+la première fois nous retourne 's'
+on execute uto = getchar la seconde fois on obtient un 'a'
+puis la troisième fois un 'l'
+puis la quatrième un 'u'
+puis 't' pour la cinquième
