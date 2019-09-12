@@ -1,4 +1,4 @@
-// git command 
+// git command
 git add .
 git commit -m "commentaire"
 git push -u origin master             ou on peut faire git push --all
@@ -19,13 +19,13 @@ git clone thttp(adresse du fichier ou dossier)
 
 g++ -Wall -o app.exe  Arme.cpp main.cpp Personnage.cpp
 
-improté code c++ en java 
+improté code c++ en java
 http://roger.astier.free.fr/app/app_java/javaJni.html
 
 
 ================QT Creator===============
 
-créer un éxécutable 
+créer un éxécutable
 
 
 $ qmake test.pro
@@ -51,3 +51,45 @@ $ sudo apt-get install splint
 
 $ splint *.c
 pour analysé tous les fichier du repertoire
+
+
+=================solve problem glib.h==================
+
+disclaimer uninstall gcc or g++ don't solve anything
+
+the problem is glib is install in two folder different so that make a problem and you need to use option -I for include extern library
+
+
+with compiler you need add option -I when you use g++ main.cpp -o main -I/path_where_is_install_glib
+
+for find path glib you need to do in terminal :
+ pkg-config --cflags glib-2.0
+ this will give you path of glib :
+exemple : -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+
+
+if you don't want use option -I :
+
+what i did but i dunno if it's good idea to do that next line:
+i had delete folder glib-2.0 in  usr/lib and in usr/include and in other file as x84_64 gnulinux after delete them
+
+what you must do
+
+try this :
+
+$ wget https://ftp.gnu.org/gnu/libc/glibc-2.26.tar.gz
+$ tar -xvzf glibc-2.26.tar.gz
+$ mkdir build_gcc && cd build_gcc
+$ ../glibc-2.26/configure --prefix=/usr
+$ make
+$ sudo checkinstall
+
+download glib.devel
+
+https://www.rpmfind.net/linux/rpm2html/search.php?query=glib-devel(x86-64)
+after include glib in g++ compiler with option -I, for repair the link of libsd.so
+after extract the folder usr
+g++ a.cpp -o main -I/home/a/Downloads/usr/include/glib-1.2 -I/home/a/Downloads/usr/lib64/ -I/home/a/Downloads/usr/lib64/glib/include/
+this will repair libsd.so
+and now you can just do g++ without option -I so
+g++ main.cpp -o main without any error
