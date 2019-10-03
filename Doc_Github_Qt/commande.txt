@@ -93,3 +93,13 @@ g++ a.cpp -o main -I/home/a/Downloads/usr/include/glib-1.2 -I/home/a/Downloads/u
 this will repair libsd.so
 and now you can just do g++ without option -I so
 g++ main.cpp -o main without any error
+
+
+==========Liunx commande=================
+
+
+grep -iRl "son_process" ./
+
+search in many file if son_process in write in this file
+
+
