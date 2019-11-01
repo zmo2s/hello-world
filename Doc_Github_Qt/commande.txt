@@ -67,13 +67,37 @@ for find path glib you need to do in terminal :
  this will give you path of glib :
 exemple : -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
 
+check your version of glib can be glib or glib.xxx in /usr/lib or /usr/include
 
 if you don't want use option -I :
+
+you have to use download glib.devel download link :https://www.rpmfind.net/linux/rpm2html/search.php?query=glib-devel(x86-64)
+and put file glib.h who is inside glib.devel in /usr/include and after glibconfig.h  who is too in glib.devel to /usr/include/
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************////////////////////////////////////////
+
+
+        IF YOU DELETE SOME GLIB FILE
+
+
+
+
 
 what i did but i dunno if it's good idea to do that next line:
 i had delete folder glib-2.0 in  usr/lib and in usr/include and in other file as x84_64 gnulinux after delete them
 
-what you must do
+what you must do if you delete some file of glib:
 
 try this :
 
@@ -91,5 +115,24 @@ after include glib in g++ compiler with option -I, for repair the link of libsd.
 after extract the folder usr
 g++ a.cpp -o main -I/home/a/Downloads/usr/include/glib-1.2 -I/home/a/Downloads/usr/lib64/ -I/home/a/Downloads/usr/lib64/glib/include/
 this will repair libsd.so
-and now you can just do g++ without option -I so
-g++ main.cpp -o main without any error
+and now you can just do g++ with option -I so
+
+
+*****************************************************************/////////////////////////////////////////////////////
+
+
+
+
+=======Wine=========
+
+Unhandled exception: page fault on read access to 0x00000000 in 32-bit code (0x7c050d7c). Register dump
+
+error 0x000032
+
+in terminal do 
+
+WINEARCH=win32 WINPREFIX=/path/to/wineprefix winecfg
+
+======play on linux=======
+
+for play windows game on linux 
