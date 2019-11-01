@@ -115,6 +115,7 @@ after include glib in g++ compiler with option -I, for repair the link of libsd.
 after extract the folder usr
 g++ a.cpp -o main -I/home/a/Downloads/usr/include/glib-1.2 -I/home/a/Downloads/usr/lib64/ -I/home/a/Downloads/usr/lib64/glib/include/
 this will repair libsd.so
+<<<<<<< HEAD
 and now you can just do g++ with option -I so
 
 
@@ -136,3 +137,17 @@ WINEARCH=win32 WINPREFIX=/path/to/wineprefix winecfg
 ======play on linux=======
 
 for play windows game on linux 
+=======
+and now you can just do g++ without option -I so
+g++ main.cpp -o main without any error
+
+
+==========Liunx commande=================
+
+
+grep -iRl "son_process" ./
+
+search in many file if son_process in write in this file
+
+
+>>>>>>> d7d45f6259ce5ba02b8e4683a02039f8bf04ab6e
