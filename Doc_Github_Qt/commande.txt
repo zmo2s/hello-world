@@ -151,3 +151,134 @@ search in many file if son_process in write in this file
 
 
 >>>>>>> d7d45f6259ce5ba02b8e4683a02039f8bf04ab6e
+
+
+
+
+
+
+====C++========
+
+
+pour une classe public et private : dnas private on met les variables et dnas public les ofcntinos par ocnventions. ( on met certaines fonction dans private car on veut pas que une personne
+un autre developpeur changes les valeures de cette fonction exemple la variable chiffre d'affaire à 0 ça fausserai les bénéfices de l'entreprise
+
+
+
+pour une fonction
+
+  &mafonction()
+
+
+c'est un retour par adresse donc pas besoin de return .
+
+const& mafonction() 
+
+on renvoie une adresse constante donc si dnas le main on fait int a=2; mafonction=&a; erreur car l'adresse de ma focntion ne peut pas etre modifié
+
+pour les paramètre ocnstant d'une fonction avec l'esperluette
+
+ mafonction( const& a)
+
+la valeur de l'objet a ne peut pas etre modifié ex dnas la fonction ma fonction()  { a.x=2; erreur car on ne peut pas modifier la valeur de l'objet }
+
+
+mafonction() const
+
+dans la focntion on ne peux pas changer la valeur des varaibles de la fonction par exemple si on à 
+une class teste
+class teste
+{
+int a;
+int b;
+int c;
+teste(int v, int v1): a(v) , b(v1) {}
+};
+mafonction() const
+ {
+
+this->a=2; erreur on a pas le droit de changer la valeur des variables ou meme que ce soit avec fait avec une fonction ni meme de modifier quoique ce soit dans cette fonction
+b=2 // interdit
+}
+
+si mafonction( int parametre) const
+{
+parametre+=1;  // fonctionne car c'est uniquement les objets qui ne sont pas modifier donc la valeur des variables de la classe et non les valeur des variables des autres méthodes
+donc on peut modifier aussi la valeur renvoyer par certaine méthode;
+d = init(); // fonctionne on créer la variable d qui n'existe pas dnas la classe et on l'initialsie avec une focntion
+
+char c = concat(char c, char d)
+
+
+}
+
+
+
+
+pour un operateur on a deux cas &mafonction ou le cas du proff voir cours
+
+
+
+--
+
+
+pour appeller un objet void Personnage::attaquer(Personnage &cible)
+on passe par adresse sinon cela serai par copie et cela ne modifirai les valeur de l'objet cibles
+sinon il faudrai renvoyer l'adresse cible avec un return 
+
+
+classe dnas une classe : 
+void Personnage::attaquer(Personnage &cible)
+{
+    cible.recevoirDegats(m_arme.getDegats());
+}
+
+
+https://www.embedded.com/passing-by-reference-to-const/
+https://openclassrooms.com/fr/courses/1894236-programmez-avec-le-langage-c/1897344-creez-les-classes-partie-1-2
+
+
+
+ mafonction( const& a) plus classiquement pour ne pas changer la valeur des objets des autres classes
+
+
+---on utilsie généralement int * mafocntion pour renvoyer un tableau et on rajoute &
+soit int* mafonction si on ne veut pas faire copie et passer diréctement sur la variable.
+
+
+si ma fonction est int* fonction(int a) { return &b}
+retourne une copie de l'adresse mémoire ou bien un pointeur construit a partir d'une adresse mémoire ( int *g(int n) { int *ptr = new int [n return ptr;}
+c'est un retour de pointeur par valeur
+
+si ma fonction est int* &mafonction2(int **T,int n)  {return T[n-1]};
+la fonction renvoie une copie de la variable , variable et non adresse mémoire.
+(sans faire de copie) c'est un retour de pointeur par adresse
+
+
+int* mafocntion pour les tableau 
+int***** ma fonction pour un tableau a 5 dimension ce n'est pas très lisible
+on peut écrire à la place
+int* &mafonction qui passe par adresse marche pour un tableau de dimenion 2,3,4,5,6 sans
+rajouter d'étoile pour les pointueres
+
+---
+
+const type var;
+la valeur de la variable est constante 
+ex:
+const int a=2;
+a=3; erreur
+
+type const var
+l'adresse de la variable est constante:
+int* const a=2;
+a=&b; erreur 
+
+
+si const et avant le type la valeur est constante
+si const et après le type l'adresse est constante
+si const et avant et après le type alors la valeur et l'adresse est constante
+
+
+
+
