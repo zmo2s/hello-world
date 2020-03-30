@@ -280,5 +280,18 @@ si const et après le type l'adresse est constante
 si const et avant et après le type alors la valeur et l'adresse est constante
 
 
+commande : tree -pug
+lsite les droits des fichiers et sous fichiers présents dnas le dossier
 
+---- java----
 
+on peut pas initialise le i de la bocule for avant.
+
+---java---
+
+si on écrit 100 fois une chaine avec un nom de variable différrent ,contenant la meme chaine 
+ex : v1="la";
+v2="la";
+ils osnt stock dnas le meme heap pour gagner du temps:
+v2=v1.intern();
+https://www.geeksforgeeks.org/interning-of-string/
