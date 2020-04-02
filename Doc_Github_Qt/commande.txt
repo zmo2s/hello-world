@@ -295,3 +295,11 @@ v2="la";
 ils osnt stock dnas le meme heap pour gagner du temps:
 v2=v1.intern();
 https://www.geeksforgeeks.org/interning-of-string/
+
+
+inclure java-fx java : 
+
+telecharger sur https://gluonhq.com/products/javafx/
+ensuite on prend le dossier 
+on l'extrait puis dnas home 
+on met le odssier java_fx ensuite on va dnas intellij inclure file->project strcture -> library -> et on inclu dossier lib qui est dans le dossier java_fx 
