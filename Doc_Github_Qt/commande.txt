@@ -305,145 +305,164 @@ on l'extrait puis dnas home
 on met le odssier java_fx ensuite on va dnas intellij inclure file->project strcture -> library -> et on inclu dossier lib qui est dans le dossier java_fx 
 et créer un project java fx. 
 
-host plusieurs réseaux centOS linux : 
+CentOS routage 2 réseaux : 
+
+-isntaller vmware : 
+
+==schéma===
+
+
+PC1.1 : 
+réseau : 192.168.10.0
+IP: 192.168.10.1
+GATEWAY : 192.168.10.254
+
+PC2.1 : 
+réseau : 192.168.11.0
+IP : 192.168.11.1 
+GATEWAY : 192.168.11.254
+(PC 2 on le passe en dhcp ip dynamique)
+
+ROUTEUR :
+contient : 
+IP: 192.168.10.254
+IP: 192.168.11.254
+Le gateway de vmware  Edit -> virtual network editor -> nat settings
+GATEWAY:172.16.84.2
 
 
 
 
-VMware Workstation 4.5
-Features | Documentation | Knowledge Base | Discussion Forums
 
-previous Prev   Contents   Last   Next next
 
-Routing between Two Host-Only Networks
-If you are setting up a complex test network using virtual machines, you may want to have two independent host-only networks with a router between them.
-
-There are two basic approaches. In one, the router software runs on the host computer. In the other, the router software runs in its own virtual machine. In both cases, you need two host-only interfaces.
-
-The examples described here outline the simplest case, with one virtual machine on each of the host-only networks. For more complex configurations, you can add more virtual machines and host-only networks as appropriate.
-
-Setting Up the First Host-Only Interface
-On Windows hosts, the first host-only network is set up automatically when you install VMware Workstation.
-
-On Linux hosts, the first host-only network was set up when you ran the vmware-config.pl program after you installed VMware Workstation, provided you agreed to install host-only networking. If you did not agree to use host-only networking, you need to run the program again to set up host-only networking.
-
-Setting Up the Second Host-Only Interface - Windows Host
-Follow these steps to set up the second host-only interface on a Windows host.
-
-Go to Edit > Virtual Network Settings > Host Virtual Adapters.
-Click Add new adapter.
-Choose the virtual network on which you want to use the adapter and click OK.
-Click Apply.
-Click OK to close the Virtual Network Editor.
-Setting Up the Second Host-Only Interface - Linux Host
-As root (su), run the VMware Workstation configuration program.
-/usr/bin/vmware-config.pl
-
-Use the wizard to modify your configuration. After asking about a NAT network, the program asks:
-Do you want to be able to use host-only networking in your virtual machines?
-
-Answer Yes.
-
-The wizard reports on host-only networks that you have already set up on the host or, if none is present, configures the first host-only network.
-
-The wizard asks:
-Do you wish to configure another host-only network?
-
-Answer Yes.
-
-Repeat this step until you have as many host-only networks as you want. Then answer No.
-
-Complete the wizard. When it is finished, it restarts all services used by VMware Workstation.
-Run ifconfig. You should see at least four network interfaces — eth0, lo, vmnet1 and vmnet2. If the VMnet interfaces do not show up immediately, wait for a minute, then run the command again. These four interfaces should have different IP address on separate subnets.
-Setting Up the Virtual Machines
-Now you have two host-only network adapters on the host computer. Each is connected to its own virtual switch (VMnet1 and VMnet2). You are ready to create and configure your virtual machines and connect them to the appropriate virtual switches.
-
-Virtual Machine 1 - Connected to the Default Host-Only Interface
-Create the virtual machine using the New Virtual Machine Wizard or use an existing virtual machine.
-Launch VMware Workstation and open the virtual machine.
-Edit the configuration using the virtual machine settings editor (VM > Settings).
-Select Network Adapter and select Host-only (VMnet1) from the drop-down list on the right.
-
-If no network adapter is shown in the list of devices, click Add, then use the Add Hardware Wizard to add an adapter.
-
-Virtual Machine 2 - Connected to the Newly Created Host-Only Interface
-Create the virtual machine using the New Virtual Machine Wizard or use an existing virtual machine.
-Launch VMware Workstation and open the virtual machine.
-Edit the configuration using the virtual machine settings editor (VM > Settings).
-Select Network Adapter and select Custom (VMnet2) from the drop-down list on the right.
-
-If no network adapter is shown in the list of devices, click Add, then use the Add Hardware Wizard to add an adapter.
-
-If you plan to run the router software on your host computer, you can skip the next section.
-
-Virtual Machine 3 - Connected to Both Host-Only Interfaces
-If you plan to run the router software on a virtual machine, set up a third virtual machine for that purpose.
-
-Create the virtual machine using the New Virtual Machine Wizard or use an existing virtual machine.
-Launch VMware Workstation and open the virtual machine.
-Edit the configuration using the virtual machine settings editor (VM > Settings).
-Select the first network adapter in the list of devices and select Host-only (VMnet1) from the drop-down list on the right. Select the second network adapter in the list of devices, then select Custom (VMnet2) from the drop-down list on the right.
-
-If you need to add one or more network adapters, click Add, then use the Add Hardware Wizard to add an adapter.
-
-Now you need to configure the networking components on the host and in the virtual machines. The recommended approach uses static IP addresses for all the virtual machines.
-
-https://www.vmware.com/support/ws45/doc/network_2host_route_ws.html
-
-VMware Workstation 4.5
-après ocnfiguré en ipv4 statique : 
-exemple : 192.1681.11
-          192.168.1.12
-          192.168.1.13
-
-ensuite passerelle par défaut exmeple
- 172.68.84.0
-172.68.83.0
-172.68.82.0
-
-masque pour les 3 : 
-255.255.255.0
 
 cd / pour la racine
 
-vi /etc/sysconfig/network-scripts/ifcfg-sen33
+==creation== interface :
+ROUTEUR:
+setting network adapter -> custom vnmet2 et vnmet3 et un NAT
+PC2:
+setting network adapter -> custom vnmet2
+PC1:
+setting network adapter -> custom vnmet3
 
-DEVICE="eth0"
-ONBOOT=yes
-TYPE=Ethernet
-BOOTPROTO=static
-NAME="System eth0"
-UUID=5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03
-IPADDR=192.168.90.1
-NETMASK=255.255.255.0
-GATEWAY=192.168.90.254
+
+
+
+==PC1===
+vi /etc/sysconfig/network-scripts/ifcfg-ens33
+
+
+TYPE="Ethernet"
+BOOTPROTO="dhcp"
+NAME="ens33"
+DEVICE="ens33"
+ONBOOT="yes"
+
+
                       
+==PC2==
+vi /etc/sysconfig/network-scripts/ifcfg-ens33
 
+TYPE="Ethernet"
+BOOTPROTO="static"
+NAME="ens33"
+DEVICE="ens33"
+ONBOOT="yes"
+IPADDR=192.168.11.1
+NETMASK=255.255.255.0
+GATEWAY:192.168.11.254
+DNS1=8.8.8.8
+
+==Routeur==
+vi /etc/sysconfig/network-scripts/ifcfg-ens33
+TYPE="Ethernet"
+BOOTPROTO="static"
+NAME="ens33"
+DEVICE="ens33"
+ONBOOT="yes"
+IPADDR=172.16.84.15
+NETMASK=255.255.255.0
+GATEWAY:172.16.84.2
+DNS1=8.8.8.8
+
+vi /etc/sysconfig/network-scripts/ifcfg-ens37
+TYPE="Ethernet"
+BOOTPROTO="static"
+NAME="ens37"
+DEVICE="ens37"
+ONBOOT="yes"
+IPADDR=192.168.10.254
+NETMASK=255.255.255.0
+GATEWAY:172.16.84.2
+DNS1=8.8.8.8
+
+
+vi /etc/sysconfig/network-scripts/ifcfg-ens38
+TYPE="Ethernet"
+BOOTPROTO="static"
+NAME="ens38"
+DEVICE="ens38"
+ONBOOT="yes"
+IPADDR=192.168.11.254
+NETMASK=255.255.255.0
+GATEWAY:172.16.84.2
+DNS1=8.8.8.8
 
 
 supprimé les truc en trop 
 
 
-http://kb.metricinsights.com/m/44498/l/500541-how-to-set-up-a-static-ip-for-a-virtual-machine-centos
+pour réactualsié un fichier (sans avoir à redémarré):
+ifdown ens33
+ifup ens33
 
-puis désactivé par feu : 
+puis désactivé par feu sur chaque ordi : 
 
 systemctl stop firewalld
 systemctl disable firewalld
 
-ensuite : sudo ifconfig ens33 add 192.168.1.11 (depuis le routeur) puis add 192.168.1.12
+ajouter cette ligne : 
+vi /etc/sysctl.conf :
 
-il faut isntaller package 
-yum install net-tools
+net.ipv4.ip_forward = 1
 
-pour controlé : 
-ifconfig
+eregistré la modif:
+sysctl -p
 
-pour check : 
-iptables -nvL
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+ensuite : iptables -F FORWARD (uniquement si on a un reject-wtih dnas la ocmmande précédante)
+service iptables save
 
-ensuite : 
-pas oublier de refaire sudo ifconfig ens33 add 192.168.1.11 a chauqe utilsiation en connectant les 3 vm
+systemctl restart iptables (peut etre très utile car si on modifie ens33 ailleur les modfication ne sont pas effectué sur iptable)
+iptables -nvL FORWARD (pour afficher reception paquet si c'est vide normal aucune règle ajouté)
+
+On a internet a partir d'ici 
+ping 8.8.8.8
+
+yum -y install dhcp
+
+vi /etc/dhcp/dhcpd.conf :
+subnet 192.168.10.0 netmask 255.255.255.0{
+ authoritative;
+ option routers 192.168.10.254;
+ option domain-name-servers 8.8.8.8;
+ range 192.168.10.1 192.168.10.50;
+}
+subnet 192.168.11.0 netmask 255.255.255.0{
+ authoritative;
+ option routers 192.168.11.254;
+ option domain-name-servers 8.8.8.8;
+ range 192.168.11.10 192.168.11.50;
+}
+Démarrage et enregistrement dans le chargeur de démarrage
+service dhcpd start
+chkconfig dhcpd on
+
+
+
+
+
 
 
 
