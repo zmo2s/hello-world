@@ -460,6 +460,24 @@ service dhcpd start
 chkconfig dhcpd on
 
 
+===Latex====
+
+
+mettre un texte en commentaire : %
+
+
+mettre une image a drotie d'une autre image 
+
+
+\begin{minipage}{0.4\textwidth }\raggedright
+\includegraphics[width=2cm ]{um2_logo.png}
+\end{minipage}
+\begin{minipage}{0.4\textwidth }\raggedleft
+ \includegraphics[width=2cm ]{  twitter_logo.png}
+\end{minipage}
+
+
+
 
 
 
