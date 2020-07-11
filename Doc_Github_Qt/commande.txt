@@ -481,7 +481,33 @@ mettre une image a drotie d'une autre image
 
 
 
+=====Tutoriel github===================
 
+
+
+git commit -m "first commit"
+
+sauvegarde en local les changements effectuer.Apres toute opération il faut le faire puis push pour sauvegarder en ligne.
+
+
+git branch : affiche la branche sur laquelle on est situer.
+
+git branch master1 : créer la branche master1
+
+
+git checkout master1 : charge la branche master1 avec toutes les donné en local sont rempalcer par celle de master1 
+
+git merge master1 : si avec git branch on ce situ dans master on va rempalcer les donné de la branche
+master par celle de master1. On pourra donc mettre a jour master. ensuite git commit -m "something" pour sauvegarder en local
+puis git push -u origin master pour sauvegarder en ligne sur master .
+
+
+
+git log : Affiche les derniere operation en push effectuer.
+
+
+git branch -d test : supprime une branch local qui s'apelle test (utiliser git branch pour lsiter les branche est utile)
+git push origin --delete test : supprime la branche sur internet qui s'apelle test 
 
 
 
