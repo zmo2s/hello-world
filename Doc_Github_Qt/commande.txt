@@ -489,10 +489,12 @@ git commit -m "first commit"
 
 sauvegarde en local les changements effectuer.Apres toute opération il faut le faire puis push pour sauvegarder en ligne.
 
+git push -u origin branch : pour sauvegarder en ligne.
+
 
 git branch : affiche la branche sur laquelle on est situer.
 
-git branch master1 : créer la branche master1
+git branch master1 : créer la branche master1, sert a créer des branches
 
 
 git checkout master1 : charge la branche master1 avec toutes les donné en local sont rempalcer par celle de master1 
@@ -508,6 +510,10 @@ git log : Affiche les derniere operation en push effectuer.
 
 git branch -d test : supprime une branch local qui s'apelle test (utiliser git branch pour lsiter les branche est utile)
 git push origin --delete test : supprime la branche sur internet qui s'apelle test 
+
+
+git checkout <commit-id> : charge la dernière sauvegarde de enregistré , on fait git branch pour voir ou on ce situ
+puis git log pour voir les id des differrents commits. ex: git checkout 3d7e354550cab9713b3a41a6cf40db15f3d908ed
 
 
 
