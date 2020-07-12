@@ -494,8 +494,9 @@ git push -u origin branch : pour sauvegarder en ligne.
 
 git branch : affiche la branche sur laquelle on est situer.
 
-git branch master1 : créer la branche master1, sert a créer des branches
-
+git branch master1 : créer la branche master1, et copie les donnee de la branche ou on se situ dans master1. Dert a créer des branches
+exemple : git branch affiche on est dans master.Master contient test.txt quand on fait un git branch quand on ce situ dans master la nouvelle branche va recupéré toute les données 
+de master soit test.txt et les autres fichiers.
 
 git checkout master1 : charge la branche master1 avec toutes les donné en local sont rempalcer par celle de master1 
 
