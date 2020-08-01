@@ -518,3 +518,92 @@ puis git log pour voir les id des differrents commits. ex: git checkout 3d7e3545
 
 
 
+
+
+
+==============================MYSQL WORKBENCH===================
+
+
+database -> reverse engeneer
+
+une fois ça fait : 
+modele -> diagram and properties size pour chager la taille de la fenetre
+
+les relation sur le logiciel sont inversé normalement :
+
+
+il faut s'aider des légendes pour les laisons : 
+
+-----------------|-- One 
+-----------------<--- Many
+-----------------||-- one and only one 
+-----------------o|-- zero or one
+-----------------|<-- one or many 
+-----------------o<-- zero or many  
+
+
+
+=================CRON SAUVEGARDE BDD==============
+
+en plus d'installer CRON il faut isntaller  postfix : sudo apt-get install postfix
+
+.------------ minute (0-59) (* = every minute)
+| .---------- hour (0-23) (* = every hour)
+| | .-------- day of month (1-31) (* = every day)
+| | | .------ month (1-12 or jan-dec) (* = every month)
+| | | | .---- day of week (0-6 or mon-sun) (Sunday=0) (* = every day)
+| | | | |
+* * * * * command_to_run
+
+crown schedule
+
+
+
+ouvrir cron avec vi :
+
+sudo EDITOR=vi crontab -e
+
+afficher contenu de cron :
+
+sudo crontab -l
+
+grep -i cron /var/log/syslog affiche les erreur de cron
+
+ls /etc/init.d afficher les programmes au demarrages linux 
+
+sayvegarde la bdd a 11h05 les minutes sont affiché en premier: 
+
+05 11 * * * mysqldump -u phpmyadmin -pPassword1011\% local | gzip -c > /var/backup/a.$(date +\%d-\%m-\%Y).sql
+
+
+
+
+optionelle : 
+
+sudo service cron start
+sudo systemctl start cron
+
+
+faire cron demarrer au boot : 
+$ sudo update-rc.d cron defaults
+# Or using systemd
+$ sudo systemctl enable cron
+
+timedatectl pour verifiez la timezone de cron
+
+
+pour connaitre la dtae des backup et permissions : 
+
+ls -l /var/www_backups/
+-rw-r--r-- 1 root root 66M Dec 3 16:33 [database_name].sql.gz
+
+verifier que le dossier soit bien root : 
+
+sudo chown $(whoami):$(whoami) /var/www_backups
+
+notation standard : 
+mysqldump -u [username mysql] –p[password mysql] [database_name mysql] > /path/to/test.sql
+
+$ sudo chmod +x /etc/cron.hourly/backup
+
+pour les droits dexecution
