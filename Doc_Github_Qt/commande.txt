@@ -607,3 +607,20 @@ mysqldump -u [username mysql] –p[password mysql] [database_name mysql] > /path
 $ sudo chmod +x /etc/cron.hourly/backup
 
 pour les droits dexecution
+
+
+
+====gestion de projet=====
+
+il faut impérativement que la personne signe le cahier des charges sinon je ne peux pas promettree
+que le projet aboutira.
+
+1) cahier des charges -> language utilise framework utilise version du language utiliser -> fonctionnalite.
+--> definir l'objectif à atteindre 
+--> fisabilité du projet ,technique , en cout etc et les risques
+2) repartition des taches avec les différrents membres
+3) établir un diagramme de gantt pour dire ce que fait la personne chaque jour faite par le developpeur
+3.5) bien différencier le temps pris par le front end et le temps pris par le back end une tache est donc divsé en 2.
+4) La version de chaque logiciel doit être identique, définir la version des logiciel 
+5) base de donnee
+6)
