@@ -623,4 +623,9 @@ que le projet aboutira.
 3.5) bien différencier le temps pris par le front end et le temps pris par le back end une tache est donc divsé en 2.
 4) La version de chaque logiciel doit être identique, définir la version des logiciel 
 5) base de donnee
-6)
+6) faire un agenda de chaque chose que les mec nous demande de chnger ou d'ajouter au cours du projet dans un agenda outlook
+si j'ai du retard je pourrais justifier mon retard et dire qua ça prendra tant de moi en plus.
+Dans l'agenda comprendra prenom,nom,date ,heure , et la description de l'action demander.
+7) Je doit établir le cahier des charges , faire une maquette , un plan de ocmment ressemble le logiciel essayer d'établir une maquette de réalisation du projet final par l'employeur,
+avec en plus les fonctionnalité attendu etc ...
+
