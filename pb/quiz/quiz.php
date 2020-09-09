@@ -36,14 +36,14 @@ $manager = new QuestionManager($db);
   
   $array=$manager->listQuestion(1);
 
-?><div id="compteur" data="1"><div id="marche"></div> <div id="champ"> <form id="rad"> <?php 
+?><div id="compteur" data="1"><div id="marche"></div> <div id="champ"> <?php 
   foreach($array as $question)
   {
     ?>
     <div class="form-check mt-5">
   <input class="form-check-input mt-3" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
   <label class="form-check-label" for="exampleRadios1">
-  <a class="btn btn-primary" id="type1" href="#" role="button"><?= $question->getPhrase() ?></a>
+  <a class="btn btn-primary" href="#" role="button"><?= $question->getPhrase() ?></a>
   </label>
 </div>
 <?php
@@ -51,19 +51,11 @@ $manager = new QuestionManager($db);
 
   ?>
 </div>
-</div>
 <button type="button" id="suiv" class="btn btn-secondary mt-5" onclick="loadDoc()">Suivant</button>
 <div id="demo">
 <script>
 
 function loadDoc() {
-/*
-a =  document.getElementById("type1").val;
-console.log(a);
-*/
-
-
-
 
 
 
@@ -78,10 +70,9 @@ console.log(a);
    // document.getElementById("demo").innerHTML = myObj[0].numero;
 
 
-   $('#suppr').remove();
+
    $('#champ').remove();
   $('#avec').remove();
-  $('#ques').remove();
 
 
   var elementAjoute = document.createElement("div");
@@ -90,68 +81,31 @@ console.log(a);
 
   document.getElementById("marche").appendChild(elementAjoute);
 
-  var elementAjoute5 = document.createElement("a");
-  elementAjoute5.setAttribute("class","btn btn-primary");
-  elementAjoute5.setAttribute("href","#");
-  elementAjoute5.setAttribute("id","met");
-  elementAjoute5.setAttribute("role","button");
-  a=parseInt(document.getElementById("compteur").getAttribute("data"))+1;
-  elementAjoute5.innerHTML="la question n°"+a;
-  document.getElementById("avec").appendChild(elementAjoute5);
+
 /* --*/
-
-max=0;
-
-// $('#avec input:radio:checked').val();
 for(i=0;i< myObj.length;i++)
 {
   var elementAjoute = document.createElement("div");
   elementAjoute.setAttribute("class","form-check mt-5");
-  elementAjoute.setAttribute("id","suppr"+i);
+  elementAjoute.setAttribute("id","suppr");
 
   document.getElementById("avec").appendChild(elementAjoute);
   var elementAjouteInput = document.createElement("input");
-  elementAjouteInput.setAttribute("class","form-check-input mt-3");
+  elementAjouteInput.setAttribute("class","form-check mt-3");
   elementAjouteInput.setAttribute("type","radio");
   elementAjouteInput.setAttribute("name","exampleRadios");
-  elementAjouteInput.setAttribute("value",""+myObj[i].phrase+"");
-  document.getElementById("suppr"+i).appendChild(elementAjouteInput);
+  elementAjouteInput.setAttribute("value","option1");
+  document.getElementById("avec").appendChild(elementAjouteInput);
   var elementAjouteA = document.createElement("a");
   elementAjouteA.setAttribute("class","btn btn-primary");
   elementAjouteA.setAttribute("href","#");
   elementAjouteA.setAttribute("role","button");
-  elementAjouteA.setAttribute("id","type"+i);
-  elementAjouteA.setAttribute("value",myObj[i].phrase);
   elementAjouteA.innerHTML= myObj[i].phrase;
-  document.getElementById("suppr"+i).appendChild(elementAjouteA);
-
-if(max <= myObj[i].numero)
-{
-max=myObj[i].numero;
-}
-
-
+  document.getElementById("avec").appendChild(elementAjouteA);
 }
 a=document.getElementById("compteur").getAttribute("data");
 b=parseInt(a)+1;
 document.getElementById("compteur").setAttribute("data",b);
-//console.log(max);
-max=parseInt(max)+1;
-console.log(max);
-
-//' 4 = max idéalement
-
-if(b ==4)
-{
-  alert("test reussie félicitations");
-  $('#suiv').remove();
-        $('#ques').remove();
-        $('#marche').remove();
-}
-
-
-
-
 
 
 //mysql il max(numero == data stop quizz)
@@ -161,8 +115,10 @@ $rep104 = $bdd->query('SELECT * FROM question');
   $rep104 = $rep104->fetch();
 if($rep104==b)
 {
+
 }
 */
+
 
 
 
@@ -170,13 +126,12 @@ if($rep104==b)
     }
   };
   a=document.getElementById("compteur").getAttribute("data");
-  
   xhttp.open("GET", "test.php?nb="+a, true);
   xhttp.send();
 
 
 loadDoc1();
-// incrémente a
+ 
 }
 
 
@@ -187,7 +142,7 @@ function loadDoc1() {
       let myObj = JSON.parse(this.responseText);
       console.log(myObj);
     //  document.getElementById("demo").innerHTML = this.responseText;
-      if(document.getElementById("compteur").getAttribute("data")==this.responseText+1)
+      if(document.getElementById("compteur").getAttribute("data")==this.responseText)
       {
         $('#suiv').remove();
         $('#ques').remove();
