@@ -1,0 +1,49 @@
+ssh accessible uniquement quand on a appliquer le routage.
+
+
+verifier que le firewall est désisntaller sur !!toutes!! les machines utiliser :
+
+systemctl stop firewalld
+systemctl disable firewalld
+
+
+===SSH WAN vers LAN===
+
+On attribut un port a un pc le port 2222 correspondra au pc 192.168.53.1
+
+iptables -t nat -A PREROUTING -i interface_du_router_pour_passerelle_internet -p tcp -- dport port_redirige_vers_pc -j DNAT --to _le_pc_surlequelle_on_veut_acceder
+
+iptables -t nat -A PREROUTING -i ens33 -p tcp --dport 2222 -j DNAT --to 192.168.53.1:22
+
+
+==sauvegarde et redemarrage==
+
+service iptables save
+systemctl restart iptables
+
+==Consulter que tout va bien ====
+
+iptables -nvL
+iptables -t nat -nvL
+
+
+==supprimer une regle ===
+
+iptables -t nat -D PREROUTING numero_ligne_a_supprimer
+iptables -t nat -D PREROUTING 1
+
+
+
+
+==ssh sur un pc du réseau qui n'es pas le routeur====
+
+
+!!important !! on ne se connecter jamais sur le port direct du pc qui n'es pas le routeur
+-On utilise le PAT :
+
+ssh -p port_redirigé_vers_le_pc user@ip_router
+
+
+
+ssh -p 2222 a@192.168.166.4
+
