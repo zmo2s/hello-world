@@ -1,0 +1,47 @@
+doc ===glpi===
+
+
+acceder à glpi : 
+http://localhost/cc/glpi/front/central.php
+
+acceder à helpdesk : 
+
+http://localhost/cc/glpi/front/helpdesk.php
+
+les mdp host et identifiant  : config/config_db.php
+
+
+commenter les lignes pour que d'autre ordi puissent accéder à glpi :
+
+# Require local
+# Deny from All
+
+ajouter un utilisateur glpi : 
+
+Se connecter à GLPI ;
+Aller dans le menu Administration > Utilisateurs ;
+Cliquer sur l'icône + située dans le menu horizontal ;
+Compléter les différents champs de la fiche vierge ;
+Valider.
+
+
+SQL SERVER mariaDB / mySQL : adresse_ip_routeur_port
+SQL SERVER mariaDB / mySQL : 192.168.166.2:8080
+
+===Connexion a la database=====
+
+user et password celle definie dans mariaDB
+user : glpi
+password : glpiDBSecret
+
+====pour se connecter a GLPI : 
+
+
+compte admin : 
+
+    glpi/glpi for the administrator account
+    tech/tech for the technician account
+    normal/normal for the normal account
+    post-only/postonly for the postonly account
+
+
